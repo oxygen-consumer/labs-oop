@@ -3,7 +3,6 @@
 //
 
 #include <cassert>
-#include <cstdlib>
 #include "tests.h"
 #include "../problems/problems.h"
 
