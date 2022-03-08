@@ -6,6 +6,11 @@
 #define LAB_2_TESTS_H
 
 /**
+ * Tests functions from Service/problems.
+ */
+void testProblems();
+
+/**
  * Runs all tests.
  */
 void runTests();

@@ -5,22 +5,27 @@
 #include "read_show.h"
 #include <iostream>
 
-void read(int *list, int &size) {
+void readArray(int *list, int &size) {
     std::cout << "Lungimea șirului: ";
     std::cin >> size;
 
-    if (size)
+    if (size > 0) {
         std::cout << "Elementele șirului: ";
-    for (int i = 0; i < size; ++i)
+    } else {
+        std::cout << "Lista a fost golita.\n";
+    }
+    for (int i = 0; i < size; ++i) {
         std::cin >> list[i];
+    }
 }
 
-void show(int *list, int size) {
-    if (!size)
+void showArray(int *list, int size) {
+    if (size <= 0) {
         std::cout << "*sunete de greier*\n";
-    else {
-        for (int i = 0; i < size; ++i)
+    } else {
+        for (int i = 0; i < size; ++i) {
             std::cout << list[i] << " ";
+        }
         std::cout << "\n";
     }
 }

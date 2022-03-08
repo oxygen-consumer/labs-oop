@@ -10,9 +10,10 @@
 void printMenu() {
     std::cout << "\n1. Citire lista\n";
     std::cout << "2. Afisare lista\n";
-    // mi lene sa scriu tot enunțul
-    std::cout << "3. Cea mai lunga secventa cu proprietatea 8\n";
-    std::cout << "4. Cea mai lunga secventa cu proprietatea 11\n";
+    // we divide the string to respect Eighty Columns Rule
+    std::cout << "3. Cea mai lunga secventa cu proprietatea ca elementele de" \
+        "pe poziții consecutive au semne contrare\n";
+    std::cout << "4. Cea mai lunga secventa in forma de munte\n";
     std::cout << "x. Iesire\n";
 }
 
@@ -31,18 +32,18 @@ void runMenu(int *list, int &size) {
                 shouldRun = false;
                 break;
             case '1':
-                read(list, size);
+                readArray(list, size);
                 break;
             case '2':
-                show(list, size);
+                showArray(list, size);
                 break;
             case '3':
-                ans = problem8(list, size);
-                show(ans.first, ans.second);
+                ans = oppositeSignsSequence(list, size);
+                showArray(ans.first, ans.second);
                 break;
             case '4':
-                ans = problem11(list, size);
-                show(ans.first, ans.second);
+                ans = mountainSequence(list, size);
+                showArray(ans.first, ans.second);
                 break;
             default:
                 std::cout << "\nOptiune inexistenta.\n";

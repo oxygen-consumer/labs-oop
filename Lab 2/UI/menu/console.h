@@ -6,6 +6,11 @@
 #define LAB_2_CONSOLE_H
 
 /**
+ * Prints menu options.
+ */
+void printMenu();
+
+/**
  * Runs a console menu.
  * @param list working array
  * @param size array length

@@ -10,13 +10,13 @@
  * @param list (out) the array
  * @param size (out) the array length
  */
-void read(int *list, int &size);
+void readArray(int *list, int &size);
 
 /**
  * Takes an array and prints it to stdout.
  * @param list the array
  * @param size the array length
  */
-void show(int *list, int size);
+void showArray(int *list, int size);
 
 #endif //LAB_3_READ_SHOW_H

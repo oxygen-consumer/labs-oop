@@ -8,19 +8,24 @@
 #include <utility>
 
 /**
- * Solves the problem 8.
+ * Get the longest sequence in which consecutive elements have opposite signs.
+ * Complexity: linear, O(size)
  * @param list an array
  * @param size array length
- * @return pair of the answer array and its size
+ * @return pair of a pointer to the start of the longest sequence with above
+ * propriety and it's size
  */
-std::pair<int *, int> problem8(int *list, int size);
+std::pair<int *, int> oppositeSignsSequence(int *list, int size);
 
 /**
- * Solves the problem 11.
+ * Get the longest sequence with a mountain form (the elements are increasing,
+ * then decreasing).
+ * Complexity: linear, O(size)
  * @param list an array
  * @param size array length
- * @return pair of the answer array and its size
+ * @return pair of a pointer to the start of the longest sequence with above
+ * propriety and it's size
  */
-std::pair<int *, int> problem11(int *list, int size);
+std::pair<int *, int> mountainSequence(int *list, int size);
 
 #endif //LAB_3_PROBLEMS_H
