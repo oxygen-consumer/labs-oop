@@ -3,4 +3,4 @@ project(Lab_4)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Lab_4 main.cpp ComplexNumber.cpp ComplexNumber.h)
+add_executable(Lab_4 main.cpp ComplexNumber.cpp ComplexNumber.h tests.cpp tests.h)
