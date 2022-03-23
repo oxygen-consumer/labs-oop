@@ -1,18 +1,15 @@
-#include <iostream>
-#include "ComplexNumber.h"
+#include "Tests/tests.h"
+#include "Domain/complex_num.h"
+#include "UI/console.h"
 
 int main() {
-    ComplexNumber num;
-    double tmp;
+    run_tests();
 
-    std::cout << "Real: ";
-    std::cin >> tmp;
-    num.set_real(tmp);
-    std::cout << "Imaginary: ";
-    std::cin >> tmp;
-    num.set_img(tmp);
+    auto *list = new complex_num[100];
+    int size = 0;
 
-    std::cout << num.get_real() << (num.get_img() > 0 ? " + " : " - ") <<
-        std::abs(num.get_img()) << "i";
+    run_menu(list, size);
+
+    delete[] list;
     return 0;
 }
