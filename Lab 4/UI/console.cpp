@@ -11,7 +11,7 @@ void print_menu() {
     std::cout << "x. Iesire\n";
 }
 
-void run_menu(complex_num *list, int &size) {
+void run_menu(numbers repo) {
     bool should_run = true;
     
     while (should_run) {
@@ -21,20 +21,27 @@ void run_menu(complex_num *list, int &size) {
         std::cin >> option;
 
         switch (option) {
-            case 'x':
+            case 'x': {
                 should_run = false;
                 break;
-            case '1':
-                list[size].read_from_stdin();
-                ++size;
+            }
+            case '1': {
+                complex_num num;
+                num.read_from_stdin();
+                repo.add(num);
                 break;
-            case '2':
-                for (int i = 0; i < size; ++i) {
-                    std::cout << list[i].to_str() << "\n";
+            }
+            case '2': {
+                std::queue<complex_num> q = repo.get_all();
+                while (!q.empty()) {
+                    std::cout << q.front().to_str() << "\n";
+                    q.pop();
                 }
                 break;
-            default:
+            }
+            default: {
                 std::cout << "Optiune invalida!\n";
+            }
         }
     }
 }

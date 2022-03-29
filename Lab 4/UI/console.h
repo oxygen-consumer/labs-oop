@@ -3,6 +3,7 @@
 //
 
 #include "../Domain/complex_num.h"
+#include "../Repository/repository_in_memory.h"
 
 #ifndef LAB_4_CONSOLE_H
 #define LAB_4_CONSOLE_H
@@ -14,9 +15,8 @@ void print_menu();
 
 /**
  * Runs the console
- * @param list a list of complex numbers
- * @param size items in the list
+ * @param repo Repository to store complex numbers
  */
-void run_menu(complex_num *list, int &size);
+void run_menu(numbers repo);
 
 #endif //LAB_4_CONSOLE_H

@@ -7,6 +7,11 @@
 #include "../Domain/complex_num.h"
 
 void run_tests() {
+    test_complex_num();
+    test_repository();
+}
+
+void test_complex_num() {
     complex_num num1;
     assert(num1.get_img() == 0);
     assert(num1.get_real() == 0);
@@ -22,6 +27,8 @@ void run_tests() {
 
     assert(num1 == num2);
     assert(num1.to_str() == "-123 + 3i");
+}
 
-    // TODO more tests
+void test_repository() {
+
 }

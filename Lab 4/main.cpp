@@ -1,15 +1,14 @@
 #include "Tests/tests.h"
 #include "Domain/complex_num.h"
 #include "UI/console.h"
+#include "Repository/repository_in_memory.h"
 
 int main() {
     run_tests();
 
-    auto *list = new complex_num[100];
-    int size = 0;
+    numbers repo;
 
-    run_menu(list, size);
+    run_menu(repo);
 
-    delete[] list;
     return 0;
 }

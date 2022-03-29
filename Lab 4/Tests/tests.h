@@ -10,4 +10,7 @@
  */
 void run_tests();
 
+void test_complex_num();
+void test_repository();
+
 #endif //LAB_4_TESTS_H
