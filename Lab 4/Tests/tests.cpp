@@ -6,6 +6,8 @@
 #include "tests.h"
 #include "../Domain/complex_num.h"
 
+// TODO: add more tests
+
 void run_tests() {
     test_complex_num();
     test_repository();

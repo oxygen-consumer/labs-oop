@@ -35,10 +35,6 @@ complex_num::complex_num(complex_num const &n) {
     this->img = n.get_img();
 }
 
-bool operator==(const complex_num &x, const complex_num &y) {
-    return (x.get_img() == y.get_img() && x.get_real() == y.get_real());
-}
-
 std::string complex_num::to_str() const {
     std::ostringstream oss;
 
@@ -63,6 +59,39 @@ void complex_num::read_from_stdin() {
 
 double complex_num::distance_from_orig() {
     return sqrt(pow(this->real, 2) + pow(this->img, 2));
+}
+
+bool complex_num::operator<(const complex_num &rhs) const {
+    if (real < rhs.real)
+        return true;
+    if (rhs.real < real)
+        return false;
+    return img < rhs.img;
+}
+
+bool complex_num::operator>(const complex_num &rhs) const {
+    return rhs < *this;
+}
+
+bool complex_num::operator<=(const complex_num &rhs) const {
+    return !(rhs < *this);
+}
+
+bool complex_num::operator>=(const complex_num &rhs) const {
+    return !(*this < rhs);
+}
+
+bool complex_num::operator==(const complex_num &rhs) const {
+    return real == rhs.real &&
+           img == rhs.img;
+}
+
+bool complex_num::operator!=(const complex_num &rhs) const {
+    return !(rhs == *this);
+}
+
+bool complex_num::in_first_quadrant() {
+    return real > 0 && img > 0;
 }
 
 complex_num::~complex_num() = default;

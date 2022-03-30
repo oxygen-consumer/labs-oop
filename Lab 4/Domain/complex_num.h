@@ -62,14 +62,6 @@ public:
     double get_img() const;
 
     /**
-     * Check if two complex numbers are equal
-     * @param x first complex number
-     * @param y second complex number
-     * @return true if they are equal, false otherwise
-     */
-    friend bool operator==(const complex_num &x, const complex_num &y);
-
-    /**
      * Converts a complex number to string and returns it
      * @return a string representing the complex number
      */
@@ -85,6 +77,24 @@ public:
      * @return distance from origin
      */
     double distance_from_orig();
+
+    /**
+     * Check if the complex number is in the first quadrant
+     * @return true if the complex number is in the first quadrant, false otherwise
+     */
+    bool in_first_quadrant();
+
+    bool operator<(const complex_num &rhs) const;
+
+    bool operator>(const complex_num &rhs) const;
+
+    bool operator<=(const complex_num &rhs) const;
+
+    bool operator>=(const complex_num &rhs) const;
+
+    bool operator==(const complex_num &rhs) const;
+
+    bool operator!=(const complex_num &rhs) const;
 };
 
 #endif //LAB_4_COMPLEX_NUM_H
