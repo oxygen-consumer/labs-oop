@@ -12,5 +12,8 @@ void run_tests();
 
 void test_complex_num();
 void test_repository();
+void test_biggest_entity();
+void test_first_quadrant();
+void test_longest_equal_length();
 
 #endif //LAB_4_TESTS_H
