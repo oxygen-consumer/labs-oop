@@ -29,6 +29,6 @@ void show_queue(std::queue<complex_num> q);
  * Adds a complex number to the repository
  * @param repo Repository to store complex numbers
  */
-void add_number(numbers& repo);
+void add_number(numbers &repo);
 
 #endif //LAB_4_CONSOLE_H
