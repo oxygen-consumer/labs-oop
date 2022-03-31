@@ -19,4 +19,16 @@ void print_menu();
  */
 void run_menu(numbers repo);
 
+/**
+ * Print a queue of complex numbers to stdout
+ * @param q the queue to print
+ */
+void show_queue(std::queue<complex_num> q);
+
+/**
+ * Adds a complex number to the repository
+ * @param repo Repository to store complex numbers
+ */
+void add_number(numbers& repo);
+
 #endif //LAB_4_CONSOLE_H

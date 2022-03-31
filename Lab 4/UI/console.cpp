@@ -14,6 +14,20 @@ void print_menu() {
     std::cout << "x. Iesire\n";
 }
 
+void show_queue(std::queue<complex_num> q) {
+    while (!q.empty()) {
+        std::cout << q.front().to_str() << " ";
+        q.pop();
+    }
+    std::cout << "\n";
+}
+
+void add_number(numbers &repo) {
+    complex_num num;
+    num.read_from_stdin();
+    repo.add(num);
+}
+
 void run_menu(numbers repo) {
     bool should_run = true;
 
@@ -29,38 +43,23 @@ void run_menu(numbers repo) {
                 break;
             }
             case '1': {
-                complex_num num;
-                num.read_from_stdin();
-                repo.add(num);
+                add_number(repo);
                 break;
             }
             case '2': {
-                std::queue<complex_num> q = repo.get_all();
-                while (!q.empty()) {
-                    std::cout << q.front().to_str() << "\n";
-                    q.pop();
-                }
+                show_queue(repo.get_all());
                 break;
             }
             case '3': {
-                complex_num num = repo.get_biggest();
-                std::cout << num.to_str() << "\n";
+                std::cout << repo.get_biggest().to_str() << "\n";
                 break;
             }
             case '4': {
-                std::queue<complex_num> q = repo.get_all_in_first_quadrant();
-                while (!q.empty()) {
-                    std::cout << q.front().to_str() << "\n";
-                    q.pop();
-                }
+                show_queue(repo.get_all_in_first_quadrant());
                 break;
             }
             case '5': {
-                std::queue<complex_num> q = repo.get_longest_equal_sequence();
-                while (!q.empty()) {
-                    std::cout << q.front().to_str() << "\n";
-                    q.pop();
-                }
+                show_queue(repo.get_longest_equal_sequence());
                 break;
             }
             default: {
@@ -69,3 +68,4 @@ void run_menu(numbers repo) {
         }
     }
 }
+
