@@ -14,6 +14,7 @@ private:
 
 public:
     numbers();
+
     ~numbers();
 
     /**
@@ -53,6 +54,9 @@ public:
      * @return a queue containing the longest sequence
      */
     std::queue<complex_num> get_longest_equal_sequence();
+
+    // TODO: delete to complete CRUD
+    // TODO: search would be useful
 };
 
 #endif //LAB_4_REPOSITORY_IN_MEMORY_H

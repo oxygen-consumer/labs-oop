@@ -16,7 +16,7 @@ void print_menu() {
 
 void run_menu(numbers repo) {
     bool should_run = true;
-    
+
     while (should_run) {
         print_menu();
         char option;

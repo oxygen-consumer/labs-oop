@@ -3,6 +3,9 @@
 //
 
 #include "complex_num.h"
+#include <limits>
+
+#define EPS std::numeric_limits<double>::epsilon()
 
 complex_num::complex_num(double real, double img) {
     this->real = real;
@@ -82,8 +85,7 @@ bool complex_num::operator>=(const complex_num &rhs) const {
 }
 
 bool complex_num::operator==(const complex_num &rhs) const {
-    return real == rhs.real &&
-           img == rhs.img;
+    return std::abs(real - rhs.real) < EPS && std::abs(img - rhs.img) < EPS;
 }
 
 bool complex_num::operator!=(const complex_num &rhs) const {
