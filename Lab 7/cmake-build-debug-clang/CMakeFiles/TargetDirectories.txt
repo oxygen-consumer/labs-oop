@@ -1,0 +1,3 @@
+/home/zaha/Workspace/Facultate/Sem II/OOP/Labs/Lab 7/cmake-build-debug-clang/CMakeFiles/rebuild_cache.dir
+/home/zaha/Workspace/Facultate/Sem II/OOP/Labs/Lab 7/cmake-build-debug-clang/CMakeFiles/edit_cache.dir
+/home/zaha/Workspace/Facultate/Sem II/OOP/Labs/Lab 7/cmake-build-debug-clang/CMakeFiles/Lab_7.dir
