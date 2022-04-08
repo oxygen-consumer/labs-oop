@@ -81,6 +81,8 @@ void menu::print_property_arguments() {
     std::cout
             << "= <value>\n\t transactions with a value equal to the given one"
             << std::endl;
+    std::cout << "If property is not given, all the transactions are considered"
+              << std::endl;
     std::cout << std::endl;
 }
 
@@ -193,7 +195,7 @@ void menu::get_command(const std::string &command) {
             std::cout << "Missing arguments" << std::endl;
         } else {
             try {
-                std::cout << serv.get_transaction(stoi(id));
+                std::cout << serv.get_transaction(stoi(id)) << std::endl;
             } catch (std::invalid_argument &e) {
                 std::cout << e.what() << std::endl;
             }
@@ -300,7 +302,7 @@ void menu::sol_command(const std::string &command) {
             std::cout << "Missing arguments" << std::endl;
         } else {
             try {
-                std::cout << serv.get_balance_of_the_day(stoi(day));
+                std::cout << serv.get_balance_of_the_day(stoi(day)) << std::endl;
             } catch (std::invalid_argument &e) {
                 std::cout << e.what() << std::endl;
             }
@@ -341,7 +343,7 @@ void menu::min_command(const std::string &command) {
 
     if (command_type == "min") {
         try {
-            std::cout << serv.get_min_transaction(filters);
+            std::cout << serv.get_min_transaction(filters) << std::endl;
         } catch (std::invalid_argument &e) {
             std::cout << e.what() << std::endl;
         }
@@ -363,7 +365,7 @@ void menu::max_command(const std::string &command) {
 
     if (command_type == "max") {
         try {
-            std::cout << serv.get_max_transaction(filters);
+            std::cout << serv.get_max_transaction(filters) << std::endl;
         } catch (std::invalid_argument &e) {
             std::cout << e.what() << std::endl;
         }
@@ -385,7 +387,7 @@ void menu::sum_command(const std::string &command) {
 
     if (command_type == "sum") {
         try {
-            std::cout << serv.get_sum_of_transactions(filters);
+            std::cout << serv.get_sum_of_transactions(filters) << std::endl;
         } catch (std::invalid_argument &e) {
             std::cout << e.what() << std::endl;
         }
