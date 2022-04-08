@@ -35,12 +35,13 @@ bool transaction::operator!=(const transaction &rhs) const {
 
 std::string transaction::to_string() const {
     std::stringstream ss;
-    ss << "id: " << id << "type: " << (value > 0 ? "in" : "out") << " value: "
-       << std::abs(value) << " description: " << description;
+    ss << "id: " << id << "; type: " << (value > 0 ? "in" : "out")
+       << "; value: "
+       << std::abs(value) << "; description: " << description;
     return ss.str();
 }
 
-unsigned int transaction::get_value() const {
+int transaction::get_value() const {
     return std::abs(this->value);
 }
 

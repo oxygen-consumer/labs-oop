@@ -3,7 +3,6 @@
 //
 
 #include <stack>
-
 #include "../Domain/vector.h"
 
 #ifndef LAB_7_REPO_H
@@ -15,15 +14,25 @@ class repository {
 private:
     vector<T> entities;
 
-    // HACK: this is very inefficient, but it works for now
+    // TODO: implement efficient undo/redo
     std::stack<vector<T>> undoStack;
     std::stack<vector<T>> redoStack;
 
 public:
+    /**
+     * @brief Construct a new repository object
+     */
     repository() = default;
 
+    /**
+     * @brief Destroy the repository object
+     */
     ~repository() = default;
 
+    /**
+     * @brief Add an entity to the repository
+     * @param e The entity to be added
+     */
     void add(T e) {
         undoStack.push(entities);
         redoStack = std::stack<vector<T>>(); //empty the redo stack
@@ -31,6 +40,10 @@ public:
         entities.push_back(e);
     }
 
+    /**
+     * @brief Remove an entity from the repository
+     * @param e The entity to be removed
+     */
     void remove(T e) {
         undoStack.push(entities);
 
@@ -44,6 +57,11 @@ public:
         redoStack = std::stack<vector<T>>(); //empty the redo stack
     }
 
+    /**
+     * @brief Update an entity in the repository
+     * @param index The index of the entity to be updated
+     * @param e The new entity
+     */
     void update(unsigned int index, T e) {
         undoStack.push(entities);
         redoStack = std::stack<vector<T>>(); //empty the redo stack
@@ -52,10 +70,18 @@ public:
         this->entities.insert(index, e);
     }
 
+    /**
+     * @brief Get the entities
+     * @return The entities
+     */
     vector<T> get_all() {
         return this->entities;
     }
 
+    /**
+     * @brief Undo the last operation
+     * @return True if the operation was successful, false otherwise
+     */
     bool undo() {
         if (this->undoStack.empty()) {
             return false;
@@ -70,6 +96,10 @@ public:
         return true;
     }
 
+    /**
+     * @brief Redo the last operation
+     * @return True if the operation was successful, false otherwise
+     */
     bool redo() {
         if (this->redoStack.empty()) {
             return false;
@@ -84,6 +114,10 @@ public:
         return true;
     }
 
+    /**
+     * @brief Remove multiple entities from the repository
+     * @param e The entities to be removed
+     */
     void mass_remove(vector<T> e) {
         undoStack.push(this->entities);
         redoStack = std::stack<vector<T>>(); //empty the redo stack
@@ -98,6 +132,10 @@ public:
         }
     }
 
+    /**
+     * @brief Get the size of the repository
+     * @return the size of the repository
+     */
     unsigned int size() {
         return this->entities.size();
     }

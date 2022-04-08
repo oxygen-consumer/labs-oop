@@ -31,19 +31,27 @@ void menu::print_menu() {
             << "properties\n\t print the available formats for the property argument"
             << std::endl;
     std::cout
-            << "list <sort|max|min|all> [propriety]\n\t print the transactions respecting the given property"
-            << "\n\tsort - print the transactions following the given property in descending order"
-            << "\n\tmax - print the maximum of the transactions following the given property"
-            << "\n\tmin - print the minimum of the transactions following the given property"
-            << "\n\tall - print all the transactions following the given property"
+            << "list [propriety]\n\t print the transactions respecting the given property"
             << "\n\tfor the available properties, type properties"
             << std::endl;
     std::cout
             << "filter <propriety>\n\t remove the transactions not respecting the given property"
             << "\n\tfor the available properties, type properties"
             << std::endl;
+    std::cout
+            << "clear [propriety]\n\t remove the transactions respecting the given property"
+            << "\n\tfor the available properties, type properties"
+            << std::endl;
     std::cout << "sol <day>\n\t print the balance for the given day"
               << std::endl;
+    std::cout
+            << "min [propriety]\n\t print the minimum value for the given property"
+            << "\n\tfor the available properties, type properties"
+            << std::endl;
+    std::cout
+            << "max [propriety]\n\t print the maximum value for the given property"
+            << "\n\tfor the available properties, type properties"
+            << std::endl;
     std::cout
             << "sum [propriety]\n\t print the sum of the transactions following the given property"
             << "\n\tfor the available properties, type properties"
@@ -108,6 +116,14 @@ void menu::start() {
             filter_command(command);
         } else if (command.find("sol") != std::string::npos) {
             sol_command(command);
+        } else if (command.find("min") != std::string::npos) {
+            min_command(command);
+        } else if (command.find("max") != std::string::npos) {
+            max_command(command);
+        } else if (command.find("sum") != std::string::npos) {
+            sum_command(command);
+        } else if (command.find("clear") != std::string::npos) {
+            clear_command(command);
         } else {
             std::cout << "Invalid command" << std::endl;
         }
@@ -190,11 +206,10 @@ void menu::get_command(const std::string &command) {
 void menu::list_command(const std::string &command) {
     std::stringstream ss(command);
     std::string command_type;
-    std::string type;
     std::queue<std::string> filters;
     std::string arg;
 
-    ss >> command_type >> type;
+    ss >> command_type;
     while (ss >> arg) {
         filters.push(arg);
     }
@@ -202,7 +217,7 @@ void menu::list_command(const std::string &command) {
     if (command_type == "list") {
         try {
             std::queue<transaction> transactions =
-                    serv.get_transactions(type, filters);
+                    serv.get_transactions(filters);
             std::cout << "Transactions:" << std::endl;
             while (!transactions.empty()) {
                 std::cout << transactions.front() << std::endl;
@@ -310,5 +325,94 @@ void menu::redo_command() {
         std::cout << "Redo successful" << std::endl;
     } catch (std::invalid_argument &e) {
         std::cout << e.what() << std::endl;
+    }
+}
+
+void menu::min_command(const std::string &command) {
+    std::stringstream ss(command);
+    std::string command_type;
+    std::queue<std::string> filters;
+    std::string arg;
+
+    ss >> command_type;
+    while (ss >> arg) {
+        filters.push(arg);
+    }
+
+    if (command_type == "min") {
+        try {
+            std::cout << serv.get_min_transaction(filters);
+        } catch (std::invalid_argument &e) {
+            std::cout << e.what() << std::endl;
+        }
+    } else {
+        std::cout << "Invalid command" << std::endl;
+    }
+}
+
+void menu::max_command(const std::string &command) {
+    std::stringstream ss(command);
+    std::string command_type;
+    std::queue<std::string> filters;
+    std::string arg;
+
+    ss >> command_type;
+    while (ss >> arg) {
+        filters.push(arg);
+    }
+
+    if (command_type == "max") {
+        try {
+            std::cout << serv.get_max_transaction(filters);
+        } catch (std::invalid_argument &e) {
+            std::cout << e.what() << std::endl;
+        }
+    } else {
+        std::cout << "Invalid command" << std::endl;
+    }
+}
+
+void menu::sum_command(const std::string &command) {
+    std::stringstream ss(command);
+    std::string command_type;
+    std::queue<std::string> filters;
+    std::string arg;
+
+    ss >> command_type;
+    while (ss >> arg) {
+        filters.push(arg);
+    }
+
+    if (command_type == "sum") {
+        try {
+            std::cout << serv.get_sum_of_transactions(filters);
+        } catch (std::invalid_argument &e) {
+            std::cout << e.what() << std::endl;
+        }
+    } else {
+        std::cout << "Invalid command" << std::endl;
+    }
+}
+
+void menu::clear_command(const std::string &command) {
+    std::stringstream ss(command);
+    std::string command_type;
+    std::queue<std::string> filters;
+    std::string arg;
+
+    ss >> command_type;
+    while (ss >> arg) {
+        filters.push(arg);
+    }
+
+    if (command_type == "clear") {
+        try {
+            serv.clear_transactions(filters);
+            std::cout << "Transactions cleared" << std::endl;
+        } catch (std::invalid_argument &e) {
+            std::cout << e.what() << std::endl;
+        }
+    } else {
+        std::cout << "Invalid command" << std::endl;
     }
 }

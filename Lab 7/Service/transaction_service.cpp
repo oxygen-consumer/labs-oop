@@ -175,8 +175,8 @@ transaction_service::update_transaction(int id, int value,
 }
 
 std::queue<transaction>
-transaction_service::get_transactions(const std::string &type,
-                                      std::queue<std::string> filters) {
+transaction_service::get_transactions(
+        std::queue<std::string> filters) {
     std::queue<transaction> transactions = get_by_property(std::move(filters));
 
     if (transactions.empty()) {
@@ -200,18 +200,30 @@ transaction transaction_service::get_transaction(int id) {
 void
 transaction_service::filter_transactions(std::queue<std::string> filters) {
     std::queue<transaction> transactions = get_by_property(std::move(filters));
+    vector<transaction> all = repo.get_all();
 
     if (transactions.empty()) {
         throw std::invalid_argument("No transactions found");
     }
 
-    vector<transaction> v;
-    while (!transactions.empty()) {
-        v.push_back(transactions.front());
-        transactions.pop();
+    // TODO: Optimize this, currently it is O(n^2)
+    vector<transaction> to_remove;
+    for (int i = 0; i < all.size(); i++) {
+        bool found = false;
+        for (int j = 0; j < transactions.size(); j++) {
+            if (all[i].get_id() == transactions.front().get_id()) {
+                found = true;
+                break;
+            }
+            transactions.push(transactions.front());
+            transactions.pop();
+        }
+        if (!found) {
+            to_remove.push_back(all[i]);
+        }
     }
 
-    repo.mass_remove(v);
+    repo.mass_remove(to_remove);
 }
 
 int transaction_service::get_balance_of_the_day(int day) {
@@ -240,6 +252,78 @@ void transaction_service::redo() {
     if (!repo.redo()) {
         throw std::invalid_argument("No more transactions to redo");
     }
+}
+
+transaction
+transaction_service::get_min_transaction(std::queue<std::string> filters) {
+    std::queue<transaction> transactions = get_by_property(std::move(filters));
+
+    if (transactions.empty()) {
+        throw std::invalid_argument("No transactions found");
+    }
+
+    transaction min = transactions.front();
+    while (!transactions.empty()) {
+        if (transactions.front().get_value() < min.get_value()) {
+            min = transactions.front();
+        }
+        transactions.pop();
+    }
+
+    return min;
+}
+
+transaction
+transaction_service::get_max_transaction(std::queue<std::string> filters) {
+    std::queue<transaction> transactions = get_by_property(std::move(filters));
+
+    if (transactions.empty()) {
+        throw std::invalid_argument("No transactions found");
+    }
+
+    transaction max = transactions.front();
+    while (!transactions.empty()) {
+        if (transactions.front().get_value() > max.get_value()) {
+            max = transactions.front();
+        }
+        transactions.pop();
+    }
+
+    return max;
+}
+
+int
+transaction_service::get_sum_of_transactions(std::queue<std::string> filters) {
+    std::queue<transaction> transactions = get_by_property(std::move(filters));
+
+    if (transactions.empty()) {
+        throw std::invalid_argument("No transactions found");
+    }
+
+    int sum = 0;
+    while (!transactions.empty()) {
+        sum += (int) transactions.front().get_value() *
+               (transactions.front().is_in() ? 1 : -1);
+        transactions.pop();
+    }
+
+    return sum;
+}
+
+void transaction_service::clear_transactions(std::queue<std::string> filters) {
+    std::queue<transaction> transactions = get_by_property(std::move(filters));
+
+    if (transactions.empty()) {
+        throw std::invalid_argument("No transactions found");
+    }
+
+    vector<transaction> v;
+    while (!transactions.empty()) {
+        v.push_back(transactions.front());
+        transactions.pop();
+    }
+
+    repo.mass_remove(v);
 }
 
 transaction_service::~transaction_service() = default;

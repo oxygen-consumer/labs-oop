@@ -15,6 +15,9 @@ private:
 
     static const unsigned int _batch_size = 1024;
 
+    /**
+     * @brief Increase capacity of vector by 1024 elements
+     */
     void resize() {
         T *temp = new T[this->_capacity + _batch_size];
         for (int i = 0; i < this->_size; i++) {
@@ -26,10 +29,17 @@ private:
     }
 
 public:
+    /**
+     * @brief Default constructor
+     */
     vector() {
         this->data = new T[_batch_size];
     }
 
+    /**
+     * @brief Copy constructor
+     * @param rhs vector to copy
+     */
     vector(vector const &rhs) {
         this->data = new T[rhs._capacity];
         this->_capacity = rhs._capacity;
@@ -39,10 +49,17 @@ public:
         }
     }
 
+    /**
+     * @brief Destructor
+     */
     ~vector() {
         delete[] this->data;
     }
 
+    /**
+     * @brief Add element to vector
+     * @param value element to add
+     */
     void push_back(T const &value) {
         if (this->_size == this->_capacity) {
             this->resize();
@@ -50,6 +67,10 @@ public:
         this->data[this->_size++] = value;
     }
 
+    /**
+     * @brief Remove element from vector
+     * @param index index of element
+     */
     void remove(unsigned int index) {
         if (index >= this->_size) {
             return;
@@ -60,6 +81,11 @@ public:
         this->_size--;
     }
 
+    /**
+     * @brief Insert element to vector
+     * @param index the index to insert at
+     * @param value the element to insert
+     */
     void insert(unsigned int index, T const &value) {
         if (index >= this->_size) {
             return;
@@ -74,10 +100,19 @@ public:
         this->_size++;
     }
 
+    /**
+     * @brief Get the size of the vector
+     * @return the size of the vector
+     */
     [[nodiscard]] unsigned int size() const {
         return this->_size;
     }
 
+    /**
+     * @brief Overload [] operator
+     * @param index index of element
+     * @return element at index
+     */
     T &operator[](unsigned int index) {
         return this->data[index];
     }
