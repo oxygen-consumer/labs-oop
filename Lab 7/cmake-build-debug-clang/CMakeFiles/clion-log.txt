@@ -1,4 +1,0 @@
-/home/zaha/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6777.58/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/zaha/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6777.58/bin/ninja/linux/ninja -DCMAKE_C_COMPILER=clang -G Ninja "/home/zaha/Workspace/Facultate/Sem II/OOP/Labs/Lab 7"
--- Configuring done
--- Generating done
--- Build files have been written to: /home/zaha/Workspace/Facultate/Sem II/OOP/Labs/Lab 7/cmake-build-debug-clang
