@@ -89,7 +89,7 @@ public:
 
         vector<T> temp = this->undoStack.top();
         this->undoStack.pop();
-        this->redoStack.push(temp);
+        this->redoStack.push(this->entities);
 
         this->entities = temp;
 
@@ -107,7 +107,7 @@ public:
 
         vector<T> temp = this->redoStack.top();
         this->redoStack.pop();
-        this->undoStack.push(temp);
+        this->undoStack.push(this->entities);
 
         this->entities = temp;
 
