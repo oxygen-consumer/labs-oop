@@ -52,15 +52,15 @@ transaction_service::get_by_property(std::queue<std::string> filters) {
                 throw std::invalid_argument("Invalid day argument");
             }
             filters.pop();
-        } else if (filter == "smaller") {
+        } else if (filter == "<") {
             smaller = true;
             smaller_arg = std::stoi(filters.front());
             filters.pop();
-        } else if (filter == "bigger") {
+        } else if (filter == ">") {
             bigger = true;
             bigger_arg = std::stoi(filters.front());
             filters.pop();
-        } else if (filter == "equal") {
+        } else if (filter == "=") {
             equal = true;
             equal_arg = std::stoi(filters.front());
             filters.pop();
@@ -122,9 +122,8 @@ void transaction_service::add_transaction(int value, const std::string &type,
     }
 
     bool is_in = type == "in";
-    char *cstr = new char[description.length() + 1];
-    std::strcpy(cstr, description.c_str());
-    transaction t(next_id, value, cstr, is_in, (unsigned int) day);
+
+    transaction t(next_id, value, description.c_str(), is_in, (unsigned int) day);
     this->repo.add(t);
     this->next_id++;
 }
@@ -159,9 +158,8 @@ transaction_service::update_transaction(int id, int value,
     }
 
     bool is_in = type == "in";
-    char *cstr = new char[description.length() + 1];
-    std::strcpy(cstr, description.c_str());
-    transaction t(id, value, cstr, is_in, (unsigned int) day);
+
+    transaction t(id, value, description.c_str(), is_in, (unsigned int) day);
 
     vector<transaction> transactions = repo.get_all();
     for (int i = 0; i < transactions.size(); i++) {

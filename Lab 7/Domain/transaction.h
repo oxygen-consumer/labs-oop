@@ -3,6 +3,7 @@
 //
 
 #include <string>
+#include <cstring>
 #include <sstream>
 #include <ostream>
 
@@ -31,7 +32,7 @@ public:
      * @param day the day of the transaction
      */
     explicit transaction(unsigned int id, int value,
-                         char *description, bool is_income, unsigned int day);
+                         const char *description, bool is_income, unsigned int day);
 
     /**
      * @brief Destroy the transaction object
@@ -66,7 +67,7 @@ public:
      * @brief Get the description of the transaction
      * @return the description of the transaction
      */
-    [[nodiscard]] char *get_description() const;
+    [[nodiscard]] char *get_description();
 
     /**
      * @brief Get the type of the transaction
@@ -102,7 +103,7 @@ public:
      * @brief Set the description of the transaction
      * @param description the description of the transaction
      */
-    [[maybe_unused]] void set_description(char *description);
+    [[maybe_unused]] void set_description(const char *description);
 
     /**
      * @brief Set the type of the transaction

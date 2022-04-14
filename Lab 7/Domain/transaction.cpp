@@ -7,16 +7,19 @@
 transaction::transaction() = default;
 
 transaction::transaction(unsigned int id, int value,
-                         char *description, bool is_income, unsigned int day) {
+                         const char *description, bool is_income,
+                         unsigned int day) {
     this->id = id;
     this->value = std::abs(value) * (is_income ? 1 : -1);
-    this->description = description;
+    this->description = new char[strlen(description) + 1];
+    std::strcpy(this->description, description);
     this->day = day;
 }
 
 transaction::transaction(const transaction &rhs) {
     this->id = rhs.get_id();
     this->value = rhs.value;
+    this->description = new char[strlen(rhs.description) + 1];
     this->description = rhs.description;
     this->day = rhs.day;
 }
@@ -45,7 +48,7 @@ int transaction::get_value() const {
     return std::abs(this->value);
 }
 
-char *transaction::get_description() const {
+char *transaction::get_description() {
     return this->description;
 }
 
@@ -83,8 +86,10 @@ transaction::~transaction() = default;
     this->value = (int) (val * (this->value < 0 ? -1 : 1));
 }
 
-[[maybe_unused]] void transaction::set_description(char *desc) {
-    this->description = desc;
+[[maybe_unused]] void transaction::set_description(const char *desc) {
+    delete[] this->description;
+    this->description = new char[strlen(desc) + 1];
+    std::strcpy(this->description, desc);
 }
 
 [[maybe_unused]] void transaction::set_day(unsigned int d) {

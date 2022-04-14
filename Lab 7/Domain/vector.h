@@ -50,6 +50,24 @@ public:
     }
 
     /**
+     * @brief Overloaded assignment operator
+     * @param rhs vector to copy
+     * @return reference to this vector
+     */
+    vector<T> &operator=(vector<T> const &rhs) {
+        if (this != &rhs) {
+            delete[] this->data;
+            this->data = new T[rhs._capacity];
+            this->_capacity = rhs._capacity;
+            this->_size = rhs._size;
+            for (int i = 0; i < rhs._size; i++) {
+                this->data[i] = rhs.data[i];
+            }
+        }
+        return *this;
+    }
+
+    /**
      * @brief Destructor
      */
     ~vector() {
@@ -109,7 +127,7 @@ public:
     }
 
     /**
-     * @brief Overload [] operator
+     * @brief Overload [] operator to get element at index
      * @param index index of element
      * @return element at index
      */
