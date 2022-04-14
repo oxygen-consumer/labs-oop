@@ -89,6 +89,10 @@ private:
         assert(q.front().get_type() == false);
         assert(q.front().get_day() == 30);
 
+        // Test the get function
+        assert(ts.get_transaction(1).get_id() == 1);
+        assert(ts.get_transaction(1).get_value() == 200);
+
         // Test the update function
         ts.update_transaction(1, 900, "out", "test", 20);
         q = ts.get_transactions(std::queue<std::string>());
@@ -97,6 +101,8 @@ private:
         assert(q.front().get_value() == 900);
         assert(strcmp(q.front().get_description(), "test") == 0);
         assert(q.front().get_type() == false);
+
+        // Test the delete function
         ts.delete_transaction(1);
         q = ts.get_transactions(std::queue<std::string>());
         assert(q.size() == 1);
