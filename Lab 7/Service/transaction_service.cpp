@@ -324,4 +324,8 @@ void transaction_service::clear_transactions(std::queue<std::string> filters) {
     repo.mass_remove(v);
 }
 
+unsigned int transaction_service::get_current_id() {
+    return this->next_id;
+}
+
 transaction_service::~transaction_service() = default;

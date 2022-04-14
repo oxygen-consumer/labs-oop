@@ -129,6 +129,13 @@ public:
      * @param filters The filters to apply
      */
     void clear_transactions(std::queue<std::string> filters);
+
+    /**
+     * @brief Get the next id to use
+     * @return The next id to use
+     */
+    unsigned int get_current_id();
+
 };
 
 

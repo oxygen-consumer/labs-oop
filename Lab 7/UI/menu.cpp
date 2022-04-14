@@ -150,7 +150,9 @@ void menu::add_command(const std::string &command) {
             try {
                 serv.add_transaction(stoi(value), type, description,
                                      stoi(day));
-                std::cout << "Transaction added" << std::endl;
+                std::cout << "Transaction with id "
+                          << serv.get_current_id() - 1 << " added"
+                          << std::endl;
             } catch (std::invalid_argument &e) {
                 std::cout << e.what() << std::endl;
             }
