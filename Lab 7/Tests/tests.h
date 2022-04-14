@@ -19,7 +19,6 @@ private:
      * @brief Test the transaction entity
      */
     static void test_transaction() {
-//        const char *description = "test";
         transaction t1(1, 200, "test", true, 20);
         assert(t1.get_id() == 1);
         assert(t1.get_value() == 200);
