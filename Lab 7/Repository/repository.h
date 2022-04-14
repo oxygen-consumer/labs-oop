@@ -66,8 +66,7 @@ public:
         undoStack.push(entities);
         redoStack = std::stack<vector<T>>(); //empty the redo stack
 
-        this->entities.remove(index);
-        this->entities.insert(index, e);
+        this->entities[index] = e;
     }
 
     /**
