@@ -9,6 +9,7 @@
 #ifndef LAB_7_MENU_H
 #define LAB_7_MENU_H
 
+// TODO: reformat with cxxopts
 
 class menu {
 private:
