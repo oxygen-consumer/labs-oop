@@ -20,7 +20,7 @@ transaction::transaction(const transaction &rhs) {
     this->id = rhs.get_id();
     this->value = rhs.value;
     this->description = new char[strlen(rhs.description) + 1];
-    this->description = rhs.description;
+    std::strcpy(this->description, rhs.description);
     this->day = rhs.day;
 }
 
@@ -76,7 +76,10 @@ bool transaction::operator>=(const transaction &rhs) const {
     return !(*this < rhs);
 }
 
-transaction::~transaction() = default;
+transaction::~transaction() {
+    delete[] description;
+    this->description = nullptr;
+}
 
 [[maybe_unused]] void transaction::set_id(unsigned int i) {
     this->id = i;
@@ -100,7 +103,16 @@ transaction::~transaction() = default;
     this->value = (int) (this->value * (is_income ? 1 : -1));
 }
 
-transaction &transaction::operator=(const transaction &rhs) = default;
+transaction &transaction::operator=(const transaction &rhs) {
+    if (this != &rhs) {
+        this->id = rhs.get_id();
+        this->value = rhs.value;
+        this->description = new char[strlen(rhs.description) + 1];
+        std::strcpy(this->description, rhs.description);
+        this->day = rhs.day;
+    }
+    return *this;
+}
 
 std::ostream &operator<<(std::ostream &os, const transaction &transaction) {
     os << transaction.to_string();
