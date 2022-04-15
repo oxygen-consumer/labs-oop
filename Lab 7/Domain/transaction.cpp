@@ -4,7 +4,12 @@
 
 #include "transaction.h"
 
-transaction::transaction() = default;
+transaction::transaction() {
+    this->id = 0;
+    this->value = 0;
+    this->day = 0;
+    this->description = nullptr;
+}
 
 transaction::transaction(unsigned int id, int value,
                          const char *description, bool is_income,

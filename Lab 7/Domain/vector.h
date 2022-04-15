@@ -104,7 +104,7 @@ public:
      * @param index the index to insert at
      * @param value the element to insert
      */
-    void insert(unsigned int index, T const &value) {
+    [[maybe_unused]] void insert(unsigned int index, T const &value) {
         if (index >= this->_size) {
             return;
         }

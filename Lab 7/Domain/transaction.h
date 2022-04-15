@@ -14,10 +14,10 @@
 
 class transaction {
 private:
-    unsigned int id;
-    int value;
-    char *description;
-    unsigned int day;
+    unsigned int id{};
+    int value{};
+    char *description{};
+    unsigned int day{};
 public:
     /**
      * @brief Construct a new transaction object without initializing it
