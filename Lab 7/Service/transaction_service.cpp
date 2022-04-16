@@ -10,100 +10,35 @@ transaction_service::transaction_service() = default;
 
 std::queue<transaction>
 transaction_service::get_by_property(std::queue<std::string> filters) {
-    std::queue<transaction> ans;
-    vector<transaction> transactions = this->repo.get_all();
+    if (filters.size() & 1) {
+        throw std::invalid_argument("Invalid property");
+    }
 
-    bool desc = false;
-    char *desc_arg;
-    bool type = false;
-    bool type_arg;
-    bool day = false;
-    int day_arg;
-    bool smaller = false;
-    int smaller_arg;
-    bool bigger = false;
-    int bigger_arg;
-    bool equal = false;
-    int equal_arg;
+    vector<transaction> transactions = repo.get_all();
 
     while (!filters.empty()) {
-        std::string filter = filters.front();
+        std::string property, argument;
+        property = std::move(filters.front());
         filters.pop();
-        if (filter == "desc") {
-            desc = true;
-            desc_arg = new char[filters.front().length() + 1];
-            strcpy(desc_arg, filters.front().c_str());
-            filters.pop();
-        } else if (filter == "type") {
-            type = true;
-            std::string type_arg_str = filters.front();
-            if (type_arg_str == "in") {
-                type_arg = true;
-            } else if (type_arg_str == "out") {
-                type_arg = false;
-            } else {
-                throw std::invalid_argument("Invalid type argument");
+        argument = std::move(filters.front());
+        filters.pop();
+        std::pair<std::string, std::string> condition = std::make_pair(
+                property, argument);
+
+        for (int i = 0; i < transactions.size(); i++) {
+            if (!(transaction_condition::check_match(transactions[i],
+                                                     condition))) {
+                transactions.remove(i);
             }
-            filters.pop();
-        } else if (filter == "day") {
-            day = true;
-            day_arg = std::stoi(filters.front());
-            if (day_arg < 1 || day_arg > 31) {
-                throw std::invalid_argument("Invalid day argument");
-            }
-            filters.pop();
-        } else if (filter == "<") {
-            smaller = true;
-            smaller_arg = std::stoi(filters.front());
-            filters.pop();
-        } else if (filter == ">") {
-            bigger = true;
-            bigger_arg = std::stoi(filters.front());
-            filters.pop();
-        } else if (filter == "=") {
-            equal = true;
-            equal_arg = std::stoi(filters.front());
-            filters.pop();
-        } else {
-            throw std::invalid_argument("Invalid property");
         }
     }
 
+    std::queue<transaction> result;
     for (int i = 0; i < transactions.size(); i++) {
-        if (desc) {
-            if (transactions[i].get_description() != desc_arg) {
-                continue;
-            }
-        }
-        if (type) {
-            if (transactions[i].get_type() != type_arg) {
-                continue;
-            }
-        }
-        if (day) {
-            if (transactions[i].get_day() != day_arg) {
-                continue;
-            }
-        }
-        if (smaller) {
-            if (transactions[i].get_value() >= smaller_arg) {
-                continue;
-            }
-        }
-        if (bigger) {
-            if (transactions[i].get_value() <= bigger_arg) {
-                continue;
-            }
-        }
-        if (equal) {
-            if (transactions[i].get_value() == equal_arg) {
-                continue;
-            }
-        }
-        ans.push(transactions[i]);
+        result.push(transactions[i]);
     }
+    return result;
 
-    return ans;
 }
 
 void transaction_service::add_transaction(int value, const std::string &type,

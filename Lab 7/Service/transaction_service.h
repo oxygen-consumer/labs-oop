@@ -6,9 +6,11 @@
 #include <string>
 #include <queue>
 #include <cstring>
+#include <utility>
 #include "../Repository/repository.h"
 #include "../Domain/Entity/transaction.h"
 #include "../Domain/Entity/transaction_validator.h"
+#include "../Domain/Entity/transaction_condition.h"
 
 #ifndef LAB_7_SERVICE_H
 #define LAB_7_SERVICE_H
