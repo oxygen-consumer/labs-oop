@@ -4,8 +4,6 @@
 
 #include "transaction_service.h"
 
-#include <utility>
-
 transaction_service::transaction_service() = default;
 
 std::queue<transaction>
