@@ -2,7 +2,7 @@
 // Created by zaha on 4/3/22.
 //
 
-#include "../Domain/transaction.h"
+#include "../Domain/Entity/transaction.h"
 #include "../Domain/vector.h"
 #include "../Repository/repository.h"
 #include "../Service/transaction_service.h"

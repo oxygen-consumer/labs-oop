@@ -7,7 +7,7 @@
 #include <queue>
 #include <cstring>
 #include "../Repository/repository.h"
-#include "../Domain/transaction.h"
+#include "../Domain/Entity/transaction.h"
 
 #ifndef LAB_7_SERVICE_H
 #define LAB_7_SERVICE_H
