@@ -71,7 +71,7 @@ public:
 
     /**
      * @brief Get the type of the transaction
-     * @return the type of the transaction
+     * @return true if the transaction is income, false otherwise
      */
     [[nodiscard]] bool get_type() const;
 

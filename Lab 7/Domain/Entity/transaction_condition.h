@@ -32,6 +32,12 @@ private:
     static bool check_day(const int &day, transaction &t);
 
 public:
+    /**
+     * @brief Check if the transaction matches the condition
+     * @param t the transaction to check
+     * @param condition the condition to check
+     * @return true if the transaction matches the condition
+     */
     static bool
     check_match(transaction t, std::pair<std::string, std::string> &condition);
 };

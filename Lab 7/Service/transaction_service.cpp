@@ -10,7 +10,7 @@ transaction_service::transaction_service() = default;
 
 std::queue<transaction>
 transaction_service::get_by_property(std::queue<std::string> filters) {
-    if (filters.size() & 1) {
+    if (filters.size() & 1) { // The number of filters must be even
         throw std::invalid_argument("Invalid property");
     }
 

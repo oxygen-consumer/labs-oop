@@ -18,6 +18,12 @@ private:
     static void check_value(int value);
 
 public:
+    /**
+     * @brief Check if the given arguments meet the requirements of a valid transaction and throw an exception if they don't.
+     * @param day
+     * @param type
+     * @param value
+     */
     static void validate(int day, std::string type, int value);
 };
 
