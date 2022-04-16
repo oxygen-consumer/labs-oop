@@ -10,7 +10,6 @@
 #ifndef LAB_7_ENTITY_H
 #define LAB_7_ENTITY_H
 
-// TODO: make a validator class
 
 class transaction {
 private:

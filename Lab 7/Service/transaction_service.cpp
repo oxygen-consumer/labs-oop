@@ -109,17 +109,7 @@ transaction_service::get_by_property(std::queue<std::string> filters) {
 void transaction_service::add_transaction(int value, const std::string &type,
                                           const std::string &description,
                                           int day) {
-    if (type != "in" && type != "out") {
-        throw std::invalid_argument("Invalid type");
-    }
-
-    if (value <= 0) {
-        throw std::invalid_argument("Invalid value");
-    }
-
-    if (day < 1 || day > 31) {
-        throw std::invalid_argument("Invalid day");
-    }
+    transaction_validator::validate(day, type, value);
 
     bool is_in = type == "in";
 
@@ -145,17 +135,7 @@ transaction_service::update_transaction(int id, int value,
                                         const std::string &type,
                                         const std::string &description,
                                         int day) {
-    if (type != "in" && type != "out") {
-        throw std::invalid_argument("Invalid type");
-    }
-
-    if (value <= 0) {
-        throw std::invalid_argument("Invalid value");
-    }
-
-    if (day < 1 || day > 31) {
-        throw std::invalid_argument("Invalid day");
-    }
+    transaction_validator::validate(day, type, value);
 
     bool is_in = type == "in";
 
@@ -324,7 +304,7 @@ void transaction_service::clear_transactions(std::queue<std::string> filters) {
     repo.mass_remove(v);
 }
 
-unsigned int transaction_service::get_current_id() {
+unsigned int transaction_service::get_current_id() const {
     return this->next_id;
 }
 

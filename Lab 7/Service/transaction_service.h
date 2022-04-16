@@ -8,6 +8,7 @@
 #include <cstring>
 #include "../Repository/repository.h"
 #include "../Domain/Entity/transaction.h"
+#include "../Domain/Entity/transaction_validator.h"
 
 #ifndef LAB_7_SERVICE_H
 #define LAB_7_SERVICE_H
@@ -134,7 +135,7 @@ public:
      * @brief Get the next id to use
      * @return The next id to use
      */
-    unsigned int get_current_id();
+    [[nodiscard]] unsigned int get_current_id() const;
 
 };
 
