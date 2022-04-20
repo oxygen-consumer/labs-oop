@@ -112,6 +112,7 @@ transaction &transaction::operator=(const transaction &rhs) {
     if (this != &rhs) {
         this->id = rhs.get_id();
         this->value = rhs.value;
+        delete[] this->description;
         this->description = new char[strlen(rhs.description) + 1];
         std::strcpy(this->description, rhs.description);
         this->day = rhs.day;

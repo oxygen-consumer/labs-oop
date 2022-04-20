@@ -114,6 +114,74 @@ private:
         // Test the get_balance function
         assert(ts.get_balance_of_the_day(30) == -300);
         assert(ts.get_balance_of_the_day(20) == 0);
+
+        // Test clear
+        ts.clear_transactions(std::queue<std::string>());
+        try {
+            ts.get_transaction(1);
+            assert(false);
+        } catch (std::exception &e) {
+            assert(true);
+        }
+
+        // Test get_sum_of_transactions
+        ts.add_transaction(200, "in", "test", 20);
+        ts.add_transaction(300, "out", "test2", 30);
+        assert(ts.get_sum_of_transactions(std::queue<std::string>()) == -100);
+        ts.add_transaction(400, "in", "test", 20);
+        assert(ts.get_sum_of_transactions(std::queue<std::string>()) == 300);
+
+        // Test get_sum_of_transactions_of_type
+        std::queue<std::string> q2;
+        q2.push("type");
+        q2.push("in");
+        assert(ts.get_sum_of_transactions(q2) == 600);
+        q2.push("type");
+        q2.push("out");
+        q2.pop();
+        q2.pop();
+        assert(ts.get_sum_of_transactions(q2) == -300);
+
+        // Test get_sum_of_transactions_of_type_of_day
+        q2.pop();
+        q2.pop();
+        q2.push("day");
+        q2.push("20");
+        assert(ts.get_sum_of_transactions(q2) == 600);
+        q2.push("day");
+        q2.push("30");
+        q2.pop();
+        q2.pop();
+        assert(ts.get_sum_of_transactions(q2) == -300);
+
+        // Test get_sum_of_transactions_of_type_of_day_of_description
+        q2.pop();
+        q2.pop();
+        q2.push("description");
+        q2.push("test");
+        assert(ts.get_sum_of_transactions(q2) == 600);
+        q2.push("description");
+        q2.push("test2");
+        q2.pop();
+        q2.pop();
+        assert(ts.get_sum_of_transactions(q2) == -300);
+
+        // Test get_sum_of_transactions_of_type_of_day_of_description_of_value
+        q2.pop();
+        q2.pop();
+        q2.push("=");
+        q2.push("300");
+        assert(ts.get_sum_of_transactions(q2) == -300);
+
+        // Test min and max
+        ts.clear_transactions(std::queue<std::string>());
+        ts.add_transaction(200, "in", "test", 20);
+        ts.add_transaction(300, "out", "test2", 30);
+        ts.add_transaction(400, "in", "test", 20);
+        transaction t = ts.get_min_transaction(std::queue<std::string>());
+        assert(t.get_value() == 200);
+        t = ts.get_max_transaction(std::queue<std::string>());
+        assert(t.get_value() == 400);
     }
 
 public:
