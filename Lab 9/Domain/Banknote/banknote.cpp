@@ -96,7 +96,7 @@ std::ostream &operator<<(std::ostream &os, const banknote &banknote) {
 }
 
 std::istream &operator>>(std::istream &is, banknote &banknote) {
-    std::string temp;
+    std::string temp; // We need this to get rid of the descriptions added by ostream
     is >> temp >> banknote.id
        >> temp >> banknote.value
        >> temp >> banknote.quantity;
