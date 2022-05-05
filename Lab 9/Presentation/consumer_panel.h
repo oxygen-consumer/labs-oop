@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <sstream>
 #include "../Service/vending_machine_controller.h"
 
 #ifndef LAB_9_CONSUMER_PANEL_H

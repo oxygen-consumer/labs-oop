@@ -55,7 +55,10 @@ void consumer_panel::run() {
 }
 
 void consumer_panel::list_products() {
-    // TODO: Implement after implementing controller
+    std::vector<product> products = controller.get_products();
+    for (const auto& product : products) {
+        std:: cout << product << std::endl;
+    }
 }
 
 void consumer_panel::buy_product() {
@@ -70,7 +73,29 @@ void consumer_panel::buy_product() {
         return;
     }
 
-    // TODO: Implement after implementing controller
+    std::cout << "Enter banknotes: ";
+    std::getline(std::cin, input);
+    std::vector<int> banknotes;
+    std::stringstream ss(input);
+    try {
+        int banknote;
+        while (ss >> banknote) {
+            banknotes.push_back(banknote);
+        }
+    } catch (...) {
+        std::cout << "Invalid input" << std::endl;
+        return;
+    }
+
+    try {
+        std::vector<int> change = controller.buy_product(product_id, banknotes);
+        std::cout << "Change: ";
+        for (const auto& banknote : change) {
+            std::cout << banknote << " ";
+        }
+    } catch (const std::exception& e) {
+        std::cout << e.what() << std::endl;
+    }
 }
 
 void consumer_panel::show_accepted_banknote_values() {
