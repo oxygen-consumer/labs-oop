@@ -18,6 +18,7 @@ void consumer_panel::run() {
     while (running) {
         print_menu();
 
+        std::cout << "> ";
         std::string input;
         int choice;
         std::cin >> input;
@@ -75,4 +76,3 @@ void consumer_panel::buy_product() {
 void consumer_panel::show_accepted_banknote_values() {
     // TODO: Implement after implementing controller
 }
-
