@@ -12,7 +12,8 @@ product::product() {
     this->quantity = 0;
 }
 
-product::product(int id, int code, std::string name, double price, int quantity) {
+product::product(int id, int code, std::string name, double price,
+                 int quantity) {
     this->id = id;
     this->code = code;
     this->name = std::move(name);
@@ -95,7 +96,8 @@ std::ostream &operator<<(std::ostream &os, const product &product) {
        << " Code: " << product.code
        << " Name: " << product.name
        << " Price: " << product.price
-       << " Quantity: " << product.quantity;
+       << " Quantity: " << product.quantity
+       << std::endl;
 
     return os;
 }

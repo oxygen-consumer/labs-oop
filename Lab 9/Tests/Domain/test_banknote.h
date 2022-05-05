@@ -4,7 +4,6 @@
 
 #include <cassert>
 #include "../../Domain/Banknote/banknote.h"
-#include "../../Domain/Banknote/banknote_exception.h"
 #include "../../Domain/Banknote/banknote_validator.h"
 
 #ifndef LAB_9_TEST_BANKNOTE_H

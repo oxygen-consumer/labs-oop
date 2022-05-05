@@ -90,7 +90,8 @@ banknote &banknote::operator=(const banknote &rhs) {
 std::ostream &operator<<(std::ostream &os, const banknote &banknote) {
     os << "ID: " << banknote.id
        << " Value: " << banknote.value
-       << " Quantity: " << banknote.quantity;
+       << " Quantity: " << banknote.quantity
+       << std::endl;
 
     return os;
 }

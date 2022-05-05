@@ -6,7 +6,6 @@
 
 void test_product::run_tests() {
     test_product_class();
-    test_product_exception();
     test_product_validator();
 }
 
@@ -54,10 +53,6 @@ void test_product::test_product_class() {
     assert(p1.get_price() == 10.0);
     p1.set_quantity(2);
     assert(p1.get_quantity() == 2);
-}
-
-void test_product::test_product_exception() {
-
 }
 
 void test_product::test_product_validator() {

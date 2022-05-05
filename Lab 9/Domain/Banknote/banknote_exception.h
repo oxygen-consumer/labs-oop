@@ -6,8 +6,16 @@
 #define LAB_9_BANKNOTE_EXCEPTION_H
 
 
-class banknote_exception {
+class banknote_exception : public std::exception {
+private:
+    std::string message;
+public:
+    explicit banknote_exception(std::string message) : message(
+            std::move(message)) {}
 
+    const char *what() const noexcept override {
+        return message.c_str();
+    }
 };
 
 

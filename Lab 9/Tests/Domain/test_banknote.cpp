@@ -6,7 +6,6 @@
 
 void test_banknote::run_tests() {
     test_banknote_class();
-    test_banknote_exception();
     test_banknote_validator();
 }
 
@@ -46,10 +45,6 @@ void test_banknote::test_banknote_class() {
     assert(b3.get_id() == 4);
     b3.set_value(50);
     assert(b3.get_value() == 50);
-}
-
-void test_banknote::test_banknote_exception() {
-
 }
 
 void test_banknote::test_banknote_validator() {

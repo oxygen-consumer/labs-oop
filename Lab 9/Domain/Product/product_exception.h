@@ -6,8 +6,16 @@
 #define LAB_9_PRODUCT_EXCEPTION_H
 
 
-class product_exception {
+class product_exception : public std::exception {
+private:
+    std::string message;
+public:
+    explicit product_exception(std::string message) : message(
+            std::move(message)) {}
 
+    const char *what() const noexcept override {
+        return message.c_str();
+    }
 };
 
 

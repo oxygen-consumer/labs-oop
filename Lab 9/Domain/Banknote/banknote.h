@@ -16,6 +16,7 @@ private:
     int id;
     double value;
     int quantity;
+
 public:
     banknote();
 

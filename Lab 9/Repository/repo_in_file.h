@@ -39,19 +39,21 @@ public:
         read_from_file();
     }
 
-    ~repo_in_file() = default;
+    ~repo_in_file() {
+        write_to_file();
+    }
 
-    void add(const T &t) override {
+    void add(T t) override {
         data.push_back(t);
         write_to_file();
     }
 
-    void remove(const T &t) override {
-        data.erase(std::remove(data.begin(), data.end(), t), data.end());
+    void remove(T t) override {
+        data.erase(std::remove(data.begin(), data.end(), t));
         write_to_file();
     }
 
-    void update(const T &t) override {
+    void update(T t) override {
         for (auto &elem: data) {
             if (elem == t) {
                 elem = t;
@@ -65,7 +67,7 @@ public:
         return data;
     }
 
-    T get_by_id(const std::string &id) override {
+    T get_by_id(int id) override {
         for (auto &elem: data) {
             if (elem.get_id() == id) {
                 return elem;
