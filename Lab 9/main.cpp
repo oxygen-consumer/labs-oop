@@ -1,6 +1,9 @@
-#include "Tests/Test.h"
+#include "Tests/test_all.h"
 
 int main() {
-    Test::run_all_tests();
+    test_all::run_tests();
+
+    // TODO: implement service and UI
+
     return 0;
 }
