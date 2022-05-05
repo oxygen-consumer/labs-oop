@@ -15,13 +15,13 @@ private:
     int id;
     int code;
     std::string name;
-    int price;
+    double price;
     int quantity;
 
 public:
     product();
 
-    product(int id, int code, std::string name, int price, int quantity);
+    product(int id, int code, std::string name, double price, int quantity);
 
     product(const product &rhs);
 
@@ -33,7 +33,7 @@ public:
 
     std::string get_name() const;
 
-    int get_price() const;
+    double get_price() const;
 
     int get_quantity() const;
 
@@ -43,7 +43,7 @@ public:
 
     void set_name(std::string new_name);
 
-    void set_price(int new_price);
+    void set_price(double new_price);
 
     void set_quantity(int new_quantity);
 

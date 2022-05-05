@@ -12,7 +12,7 @@ product::product() {
     this->quantity = 0;
 }
 
-product::product(int id, int code, std::string name, int price, int quantity) {
+product::product(int id, int code, std::string name, double price, int quantity) {
     this->id = id;
     this->code = code;
     this->name = std::move(name);
@@ -54,11 +54,11 @@ void product::set_name(std::string new_name) {
     this->name = std::move(new_name);
 }
 
-int product::get_price() const {
+double product::get_price() const {
     return this->price;
 }
 
-void product::set_price(int new_price) {
+void product::set_price(double new_price) {
     this->price = new_price;
 }
 
