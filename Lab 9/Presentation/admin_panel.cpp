@@ -87,14 +87,14 @@ void admin_panel::run() {
 void admin_panel::list_products() {
     std::vector<product> products = serv.get_products();
     for (const auto &product: products) {
-        std::cout << product << std::endl;
+        std::cout << product;
     }
 }
 
 void admin_panel::list_banknotes() {
     std::vector<banknote> banknotes = serv.get_banknotes();
     for (const auto &banknote: banknotes) {
-        std::cout << banknote << std::endl;
+        std::cout << banknote;
     }
 }
 

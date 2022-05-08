@@ -57,7 +57,7 @@ void consumer_panel::run() {
 void consumer_panel::list_products() {
     std::vector<product> products = serv.get_products();
     for (const auto& product : products) {
-        std:: cout << product << std::endl;
+        std::cout << product;
     }
 }
 
@@ -106,6 +106,7 @@ void consumer_panel::buy_product() {
         for (const auto& banknote : change) {
             std::cout << banknote << " ";
         }
+        std::cout << std::endl;
     } catch (const std::exception& e) {
         std::cout << e.what() << std::endl;
         std::cout << "You got your money back" << std::endl;
