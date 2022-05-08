@@ -14,8 +14,6 @@ class test_banknote {
 private:
     static void test_banknote_class();
 
-    static void test_banknote_exception();
-
     static void test_banknote_validator();
 
 public:

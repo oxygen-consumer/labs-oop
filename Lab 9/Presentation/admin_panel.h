@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "../Service/vending_machine_controller.h"
+#include "../Service/vending_machine_service.h"
 
 #ifndef LAB_9_ADMIN_PANEL_H
 #define LAB_9_ADMIN_PANEL_H
@@ -11,9 +11,9 @@
 
 class admin_panel {
 private:
-    vending_machine_controller controller;
+    vending_machine_service &serv;
 
-    void print_menu();
+    static void print_menu();
 
     void list_products();
 
@@ -34,7 +34,7 @@ private:
     void show_accepted_banknote_values();
 
 public:
-    admin_panel() = default;
+    explicit admin_panel(vending_machine_service &serv) : serv(serv) {}
 
     ~admin_panel() = default;
 

@@ -48,7 +48,7 @@ void user_interface::run_admin_menu() {
     std::cin >> password;
 
     if (password == "admin") { //Security at its finest
-        admin_panel panel{};
+        admin_panel panel(serv);
         panel.run();
     } else {
         std::cout << "Wrong password" << std::endl;
@@ -56,6 +56,6 @@ void user_interface::run_admin_menu() {
 }
 
 void user_interface::run_consumer_menu() {
-    consumer_panel panel{};
+    consumer_panel panel(serv);
     panel.run();
 }

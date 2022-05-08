@@ -5,6 +5,7 @@
 #include <iostream>
 #include "admin_panel.h"
 #include "consumer_panel.h"
+#include "../Service/vending_machine_service.h"
 
 #ifndef LAB_9_USER_INTERFACE_H
 #define LAB_9_USER_INTERFACE_H
@@ -12,12 +13,18 @@
 
 class user_interface {
 private:
-    static void run_admin_menu();
+    vending_machine_service &serv;
 
-    static void run_consumer_menu();
+    void run_admin_menu();
+
+    void run_consumer_menu();
 
 public:
-    static void run();
+    explicit user_interface(vending_machine_service &serv) : serv(serv) {}
+
+    ~user_interface() = default;
+
+    void run();
 };
 
 

@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <sstream>
-#include "../Service/vending_machine_controller.h"
+#include "../Service/vending_machine_service.h"
 
 #ifndef LAB_9_CONSUMER_PANEL_H
 #define LAB_9_CONSUMER_PANEL_H
@@ -12,9 +12,9 @@
 
 class consumer_panel {
 private:
-    vending_machine_controller controller;
+    vending_machine_service &serv;
 
-    void print_menu();
+    static void print_menu();
 
     void list_products();
 
@@ -23,7 +23,7 @@ private:
     void show_accepted_banknote_values();
 
 public:
-    consumer_panel() = default;
+    explicit consumer_panel(vending_machine_service &serv) : serv(serv) {}
 
     ~consumer_panel() = default;
 

@@ -3,6 +3,7 @@
 //
 
 #include <algorithm>
+#include "double_compare.h"
 #include "../Domain/Product/product.h"
 #include "../Domain/Banknote/banknote.h"
 #include "../Domain/Product/product_exception.h"
@@ -17,7 +18,7 @@
 #ifndef LAB_9_VENDING_MACHINE_CONTROLLER_H
 #define LAB_9_VENDING_MACHINE_CONTROLLER_H
 
-class vending_machine_controller {
+class vending_machine_service {
 private:
     repo_interface<product> *products_repo;
     repo_interface<banknote> *banknotes_repo;
@@ -25,15 +26,13 @@ private:
     banknote_validator bv;
 
     std::vector<double>
-    get_change(const std::vector<double> &input, double given_money);
+    get_change(const std::vector<double> &input, double price);
 
 public:
-    // FIXME: this shouldn't be hardcoded
-    vending_machine_controller() : products_repo(
-            new repo_in_file<product>("products.txt")), banknotes_repo(
-            new repo_in_file<banknote>("banknotes.txt")) {}
+    vending_machine_service(repo_interface<product> *products_repo,
+                            repo_interface<banknote> *banknotes_repo);
 
-    ~vending_machine_controller();
+    ~vending_machine_service();
 
     std::vector<double> buy_product(int id, const std::vector<double> &input);
 

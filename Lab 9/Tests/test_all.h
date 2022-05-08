@@ -4,7 +4,7 @@
 
 #include "Domain/test_domain.h"
 #include "Repository/test_repo.h"
-#include "Service/test_controller.h"
+#include "Service/test_service.h"
 
 // TODO: test repos
 // TODO: test service

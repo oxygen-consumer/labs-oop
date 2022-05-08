@@ -76,19 +76,23 @@ void admin_panel::run() {
                 running = false;
                 break;
             }
+            default: {
+                std::cout << "Invalid input" << std::endl;
+                break;
+            }
         }
     }
 }
 
 void admin_panel::list_products() {
-    std::vector<product> products = controller.get_products();
+    std::vector<product> products = serv.get_products();
     for (const auto &product: products) {
         std::cout << product << std::endl;
     }
 }
 
 void admin_panel::list_banknotes() {
-    std::vector<banknote> banknotes = controller.get_banknotes();
+    std::vector<banknote> banknotes = serv.get_banknotes();
     for (const auto &banknote: banknotes) {
         std::cout << banknote << std::endl;
     }
@@ -118,7 +122,7 @@ void admin_panel::add_product() {
     }
 
     try {
-        controller.add_product(id, code, name, price, quantity);
+        serv.add_product(id, code, name, price, quantity);
     } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }
@@ -126,7 +130,7 @@ void admin_panel::add_product() {
 
 void admin_panel::add_banknote() {
     int id;
-    int value;
+    double value;
     int quantity;
 
     try {
@@ -142,7 +146,7 @@ void admin_panel::add_banknote() {
     }
 
     try {
-        controller.add_banknote(id, value, quantity);
+        serv.add_banknote(id, value, quantity);
     } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }
@@ -159,7 +163,7 @@ void admin_panel::remove_product() {
     }
 
     try {
-        controller.remove_product(id);
+        serv.remove_product(id);
     } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }
@@ -176,7 +180,7 @@ void admin_panel::remove_banknote() {
     }
 
     try {
-        controller.remove_banknote(id);
+        serv.remove_banknote(id);
     } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }
@@ -206,7 +210,7 @@ void admin_panel::edit_product() {
     }
 
     try {
-        controller.update_product(id, code, name, price, quantity);
+        serv.update_product(id, code, name, price, quantity);
     }
     catch (std::exception &e) {
         std::cout << e.what() << std::endl;
@@ -215,7 +219,7 @@ void admin_panel::edit_product() {
 
 void admin_panel::edit_banknote() {
     int id;
-    int value;
+    double value;
     int quantity;
 
     try {
@@ -231,14 +235,14 @@ void admin_panel::edit_banknote() {
     }
 
     try {
-        controller.update_banknote(id, value, quantity);
+        serv.update_banknote(id, value, quantity);
     } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }
 }
 
 void admin_panel::show_accepted_banknote_values() {
-    std::vector<double> banknotes = controller.get_accepted_banknote_values();
+    std::vector<double> banknotes = serv.get_accepted_banknote_values();
     std::cout << "Accepted banknotes: " << std::endl;
     for (auto &banknote: banknotes) {
         std::cout << banknote << " ";

@@ -55,7 +55,7 @@ void consumer_panel::run() {
 }
 
 void consumer_panel::list_products() {
-    std::vector<product> products = controller.get_products();
+    std::vector<product> products = serv.get_products();
     for (const auto& product : products) {
         std:: cout << product << std::endl;
     }
@@ -75,7 +75,7 @@ void consumer_panel::buy_product() {
 
     double price;
     try {
-        price = controller.get_product(product_id).get_price();
+        price = serv.get_product(product_id).get_price();
     } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
         return;
@@ -84,8 +84,9 @@ void consumer_panel::buy_product() {
     double money_inserted = 0;
     std::vector<double> banknotes;
     try {
-        while (money_inserted - price < 0) {
-            std::cout << "You need to add " << price << " RON more"
+        while (money_inserted < price) {
+            std::cout << "You need to add " << price - money_inserted
+                      << " RON more"
                       << std::endl;
             std::cout << "Enter the amount of money inserted: ";
             std::cin >> input;
@@ -100,18 +101,19 @@ void consumer_panel::buy_product() {
     }
 
     try {
-        std::vector<double> change = controller.buy_product(product_id, banknotes);
+        std::vector<double> change = serv.buy_product(product_id, banknotes);
         std::cout << "Change: ";
         for (const auto& banknote : change) {
             std::cout << banknote << " ";
         }
     } catch (const std::exception& e) {
         std::cout << e.what() << std::endl;
+        std::cout << "You got your money back" << std::endl;
     }
 }
 
 void consumer_panel::show_accepted_banknote_values() {
-    std::vector<double> banknotes = controller.get_accepted_banknote_values();
+    std::vector<double> banknotes = serv.get_accepted_banknote_values();
     std::cout << "Accepted banknotes: ";
     for (const auto& banknote : banknotes) {
         std::cout << banknote << " ";
