@@ -56,6 +56,14 @@ void test_product::test_product_class() {
 }
 
 void test_product::test_product_validator() {
+    product p1(1, 1, "prod1", 20.0, 1);
+    product p2(2, 2, "prod2", 30.0, 2);
+    product p3(3, 3, "prod3", 40.0, -1);
+    product p4(4, 4, "", 50.0, 0);
 
+    assert(product_validator::is_valid(p1));
+    assert(product_validator::is_valid(p2));
+    assert(!product_validator::is_valid(p3));
+    assert(!product_validator::is_valid(p4));
 }
 

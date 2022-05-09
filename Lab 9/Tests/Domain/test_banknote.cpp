@@ -48,5 +48,19 @@ void test_banknote::test_banknote_class() {
 }
 
 void test_banknote::test_banknote_validator() {
+    banknote_validator v;
+    banknote b1(1, 100, 5);
+    banknote b2(2, 500, 1);
+    banknote b3(b1);
+    banknote b4 = b2;
+    banknote b5(3, 7, 5);
 
+    assert(v.is_valid(b1));
+    assert(v.is_valid(b2));
+    assert(v.is_valid(b3));
+    assert(v.is_valid(b4));
+    assert(!v.is_valid(b5));
+    assert(!v.is_valid(banknote(0, 0, 0)));
+    assert(!v.is_valid(2));
+    assert(v.is_valid(5));
 }

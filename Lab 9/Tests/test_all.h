@@ -6,9 +6,6 @@
 #include "Repository/test_repo.h"
 #include "Service/test_service.h"
 
-// TODO: test repos
-// TODO: test service
-
 #ifndef LAB_9_TEST_ALL_H
 #define LAB_9_TEST_ALL_H
 

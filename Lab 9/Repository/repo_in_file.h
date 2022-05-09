@@ -47,7 +47,14 @@ public:
     }
 
     void remove(T t) override {
-        data.erase(std::remove(data.begin(), data.end(), t));
+        // if we use data.erase() with std::find or std::remove, it will not compile, leave it as it is
+        for (auto it = data.begin(); it != data.end(); it++) {
+            if (*it == t) {
+                data.erase(it);
+                break;
+            }
+        }
+
         write_to_file();
     }
 
