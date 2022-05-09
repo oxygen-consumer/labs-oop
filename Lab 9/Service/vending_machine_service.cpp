@@ -87,7 +87,10 @@ vending_machine_service::buy_product(int id,
     }
 
     product p = products_repo->get_by_id(id);
-    return get_change(input, p.get_price());
+    std::vector<double> change = get_change(input, p.get_price());
+    update_product(p.get_id(), p.get_code(), p.get_name(), p.get_price(),
+                   p.get_quantity() - 1);
+    return change;
 }
 
 void

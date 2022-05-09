@@ -22,7 +22,6 @@ private:
         while (file >> t) {
             data.push_back(t);
         }
-        file.close();
     }
 
     void write_to_file() {
@@ -30,7 +29,6 @@ private:
         for (auto t: data) {
             file << t << std::endl;
         }
-        file.close();
     }
 
 public:
