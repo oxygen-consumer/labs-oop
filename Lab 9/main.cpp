@@ -6,10 +6,10 @@
 int main() {
     test_all::run_tests();
 
-    repo_interface<product> *products_repo = new repo_in_file<product>(
-            "products.txt");
-    repo_interface<banknote> *banknotes_repo = new repo_in_file<banknote>(
-            "banknotes.txt");
+    repo_in_file<product> prepo("products.txt");
+    repo_in_file<banknote> brepo("banknotes.txt");
+    repo_interface<product> &products_repo = prepo;
+    repo_interface<banknote> &banknotes_repo = brepo;
 
     vending_machine_service serv(products_repo, banknotes_repo);
 

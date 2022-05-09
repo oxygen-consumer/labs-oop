@@ -5,6 +5,7 @@
 #include "Domain/test_domain.h"
 #include "Repository/test_repo.h"
 #include "Service/test_service.h"
+#include "Utils/test_utils.h"
 
 #ifndef LAB_9_TEST_ALL_H
 #define LAB_9_TEST_ALL_H

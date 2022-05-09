@@ -20,8 +20,8 @@
 
 class vending_machine_service {
 private:
-    repo_interface<product> *products_repo;
-    repo_interface<banknote> *banknotes_repo;
+    repo_interface<product> &products_repo;
+    repo_interface<banknote> &banknotes_repo;
 
     banknote_validator bv;
 
@@ -29,10 +29,11 @@ private:
     get_change(const std::vector<double> &input, double price);
 
 public:
-    vending_machine_service(repo_interface<product> *products_repo,
-                            repo_interface<banknote> *banknotes_repo);
+    vending_machine_service(repo_interface<product> &products_repo,
+                            repo_interface<banknote> &banknotes_repo)
+            : products_repo(products_repo), banknotes_repo(banknotes_repo) {}
 
-    ~vending_machine_service();
+    ~vending_machine_service() = default;
 
     std::vector<double> buy_product(int id, const std::vector<double> &input);
 

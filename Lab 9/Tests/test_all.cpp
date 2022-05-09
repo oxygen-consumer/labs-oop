@@ -8,4 +8,5 @@ void test_all::run_tests() {
     test_domain::run_tests();
     test_repo::run_tests();
     test_service::run_tests();
+    test_utils::run_tests();
 }
