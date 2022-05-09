@@ -5,7 +5,7 @@
 #include "banknote.h"
 #include <vector>
 #include <algorithm>
-#include "../../Service/double_compare.h"
+#include "../../Utils/double_compare.h"
 
 #ifndef LAB_9_BANKNOTE_VALIDATOR_H
 #define LAB_9_BANKNOTE_VALIDATOR_H

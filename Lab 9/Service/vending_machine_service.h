@@ -3,7 +3,7 @@
 //
 
 #include <algorithm>
-#include "double_compare.h"
+#include "../Utils/double_compare.h"
 #include "../Domain/Product/product.h"
 #include "../Domain/Banknote/banknote.h"
 #include "../Domain/Product/product_exception.h"

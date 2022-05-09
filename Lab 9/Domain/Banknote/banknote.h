@@ -6,6 +6,7 @@
 #include <ostream>
 #include <istream>
 #include <limits>
+#include "../../Utils/double_compare.h"
 
 #ifndef LAB_9_BANKNOTE_H
 #define LAB_9_BANKNOTE_H

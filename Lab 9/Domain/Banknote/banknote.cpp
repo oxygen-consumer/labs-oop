@@ -50,16 +50,16 @@ void banknote::set_quantity(int new_quantity) {
     this->quantity = new_quantity;
 }
 
-bool banknote::operator==(const banknote &other) const {
-    return this->id == other.id;
+bool banknote::operator==(const banknote &rhs) const {
+    return double_compare::equal(this->value, rhs.value);
 }
 
-bool banknote::operator!=(const banknote &other) const {
-    return !(*this == other);
+bool banknote::operator!=(const banknote &rhs) const {
+    return !(*this == rhs);
 }
 
 bool banknote::operator<(const banknote &rhs) const {
-    if (std::abs(rhs.value - this->value) < EPS) {
+    if (double_compare::less(this->value, rhs.value)) {
         return false;
     }
     return this->value < rhs.value;

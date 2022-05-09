@@ -3,7 +3,7 @@
 //
 
 #include <cassert>
-#include "../../Service/double_compare.h"
+#include "../../Utils/double_compare.h"
 
 #ifndef LAB_9_TEST_DOUBLE_COMPARE_H
 #define LAB_9_TEST_DOUBLE_COMPARE_H

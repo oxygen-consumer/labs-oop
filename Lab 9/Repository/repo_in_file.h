@@ -4,6 +4,7 @@
 
 #include <string>
 #include <fstream>
+#include <algorithm>
 #include "repo_interface.h"
 
 #ifndef LAB_9_REPO_IN_FILE_H
@@ -47,14 +48,7 @@ public:
     }
 
     void remove(T t) override {
-        // if we use data.erase() with std::find or std::remove, it will not compile, leave it as it is
-        for (auto it = data.begin(); it != data.end(); it++) {
-            if (*it == t) {
-                data.erase(it);
-                break;
-            }
-        }
-
+        data.erase(std::remove(data.begin(), data.end(), t), data.end());
         write_to_file();
     }
 
