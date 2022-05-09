@@ -206,11 +206,11 @@ vending_machine_service::get_accepted_banknote_values() {
     return bv.get_accepted_banknotes();
 }
 
-product vending_machine_service::get_product(int id) {
+product vending_machine_service::get_product(int code) {
     std::vector<product> products = this->products_repo.get_all();
 
     for (auto &product: products) {
-        if (product.get_id() == id) {
+        if (product.get_code() == code) {
             return product;
         }
     }

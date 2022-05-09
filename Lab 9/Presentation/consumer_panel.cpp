@@ -62,12 +62,12 @@ void consumer_panel::list_products() {
 }
 
 void consumer_panel::buy_product() {
-    std::cout << "Enter the product ID: ";
+    std::cout << "Enter the product code: ";
     std::string input;
     std::cin >> input;
-    int product_id;
+    int product_code;
     try {
-        product_id = std::stoi(input);
+        product_code = std::stoi(input);
     } catch (...) {
         std::cout << "Invalid input" << std::endl;
         return;
@@ -75,7 +75,7 @@ void consumer_panel::buy_product() {
 
     double price;
     try {
-        price = serv.get_product(product_id).get_price();
+        price = serv.get_product(product_code).get_price();
     } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
         return;
@@ -101,7 +101,7 @@ void consumer_panel::buy_product() {
     }
 
     try {
-        std::vector<double> change = serv.buy_product(product_id, banknotes);
+        std::vector<double> change = serv.buy_product(product_code, banknotes);
         std::cout << "Change: ";
         for (const auto& banknote : change) {
             std::cout << banknote << " ";
